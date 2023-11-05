@@ -1,0 +1,13 @@
+
+.card {
+    height: 380px; /* Définissez la hauteur souhaitée */
+    
+  
+}
+
+.card-img-top {
+    object-fit: cover; /* Pour ajuster l'image à l'intérieur de la carte */
+    height: 200px; /* Définissez la hauteur souhaitée pour l'image */
+}
+
+

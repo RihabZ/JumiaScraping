@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<nav class="navbar navbar-expand-sm navbar-light bg-secondary">
+   
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'affiche' %}" >Liste des smartphones</a>
+       
+            <form class="form-inline" method="GET" action="{% url 'filtrer_par_marque' %}">
+                <div class="form-group">
+                    <label for="marque">Marque:</label>
+                    <select class="form-control" id="marque" name="marque">
+
+                    <option value="Apple">Apple</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Huawei">Huawei</option>
+                    <option value="XIAOMI">XIAOMI</option>
+                   <option value="Evertek">Evertek</option>
+                    <option value="Oppo">Oppo</option>
+                    <option value="Nokia">Nokia</option>
+
+
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+            </form>
+            <form class="form-inline" method="GET" action="{% url 'filtrer_par_prix' %}">
+                <div class="form-group">
+                    <label for="prix_max">Prix maximal:</label>
+                    <input type="text" class="form-control" id="prix_max" name="prix_max">
+                </div>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+            </form>
+        
+    </nav>
+</nav>

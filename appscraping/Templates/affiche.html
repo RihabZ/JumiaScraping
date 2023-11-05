@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Liste des smartphones</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <br></br>
+
+{% block content %}
+  <!-- Affichage des smartphones -->
+  <div class="container">
+    <div class="row">
+      {% for smartphone in page_obj %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ smartphone.image }}" class="card-img-top" alt="Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ smartphone.name }}</h5>
+              <p class="card-text">{{ smartphone.price }}</p>
+              <a href="/appscraping/details?image={{ smartphone.image }}&link={{ smartphone.link }}&price={{ smartphone.price }}&name={{ smartphone.name }}" class="btn btn-info">Détails</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+  
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+          <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if marque %}&marque={{ marque }}{% endif %}{% if prix_max %}&prix_max={{ prix_max }}{% endif %}">Précédent</a>
+          </li>
+      {% endif %}
+      {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+              <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="?page={{ num }}{% if marque %}&marque={{ marque }}{% endif %}{% if prix_max %}&prix_max={{ prix_max }}{% endif %}">{{ num }}</a>
+              </li>
+          {% else %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ num }}{% if marque %}&marque={{ marque }}{% endif %}{% if prix_max %}&prix_max={{ prix_max }}{% endif %}">{{ num }}</a>
+              </li>
+          {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+          <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if marque %}&marque={{ marque }}{% endif %}{% if prix_max %}&prix_max={{ prix_max }}{% endif %}">Suivant</a>
+          </li>
+      {% endif %}
+  </ul>
+</nav>
+
+ 
+{% endblock %}
